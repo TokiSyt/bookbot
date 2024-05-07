@@ -1,6 +1,6 @@
 def organization(texto):
 	contador_letras = letras_contadas(texto)
-	sorted_letras = sorted(contador_letras.keys()) #ordem alfabetica
+	sorted_letras = sorted(contador_letras.keys())
 
 	for letra in sorted_letras:
 		numero = contador_letras.get(letra)
@@ -27,7 +27,7 @@ def letras_contadas(texto):
 	lowered_string = texto.lower()
 	contador_letras = {}
 	for char in lowered_string:
-		if char.isalpha(): #ver se é letra
+		if char.isalpha():
 			if char in contador_letras:
 				contador_letras[char] += 1
 			else:
