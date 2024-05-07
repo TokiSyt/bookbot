@@ -1,18 +1,20 @@
 def organization(texto):
 	contador_letras = letras_contadas(texto)
 	sorted_letras = sorted(contador_letras.keys())
+	texto_compl = ""
 
 	for letra in sorted_letras:
 		numero = contador_letras.get(letra)
-		frase =  "The letter {} appears {} times.".format(letra, numero)
-		print(frase)
+		frase = "The letter {} appears {} times.".format(letra, numero)
+		texto_compl += frase + "\n"
+	return texto_compl
 
 def main():
 	book_path = "books/frankenstein.txt"
 	livro = get_book_text(book_path)
 	print("--- Begin report of books/frankenstein.txt ---\n")
 	print(palavras_contadas(livro), "words found in the document\n")
-	organization(livro)
+	print(organization(livro))
 	print("\n--- End report ---")
 
 def get_book_text(path):
