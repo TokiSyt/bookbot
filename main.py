@@ -31,9 +31,10 @@ def organization(texto, user_input):
 
 	texto_compl = ""
 	alpha_check = user_input.isalpha()
+	lowered_input = user_input.lower()
 	
 
-	if user_input == "All":
+	if lowered_input == "all":
 
 		contador_letras = letters_counted(texto)
 		sorted_letras = sorted(contador_letras.keys())
@@ -44,11 +45,10 @@ def organization(texto, user_input):
 			texto_compl += frase + "\n"
 		print(texto_compl)
 	
-	elif user_input == "None":
+	elif lowered_input == "none":
 		pass
 
 	elif alpha_check:
-		lowered_input = user_input.lower()
 		if len(lowered_input) == 1:
 			if lowered_input in alphabet:
 				l_counted = letters_counted(texto)
