@@ -8,8 +8,8 @@ def organization(text, user_input):
 		total_letters = letters_counted(text)
 		sorted_letters = dict(sorted(total_letters.items()))
 
-		for letter in sorted_letters:
-			letter_amount = sorted_letters.get(letter)
+		for letter in alphabet:
+			letter_amount = sorted_letters.get(letter, 0)
 			if letter == "z":
 				print(f"The letter {letter} appears {letter_amount} times.")
 			else:
@@ -42,7 +42,7 @@ def letters_option():
 	Single letter from A to Z - That letter count.
 						
 	Answer here: ''')
-			if checker_letters.lower() in alphabet and len(checker_letters) == 1 or checker_letters.lower() in ["zero", "all"]:
+			if (checker_letters.lower() in alphabet and len(checker_letters) == 1) or checker_letters.lower() in ["zero", "all"]:
 				return checker_letters.lower()
 			else:
 				print('Please enter Zero, All or a single letter from the alphabet.')
@@ -56,7 +56,7 @@ def get_book_text(path):
 
 
 def main():
-	book_path = "Shrek.txt"
+	book_path = "shrek.txt"
 	book = get_book_text(book_path)
 	checker_words = words_option()
 	checker_letters = letters_option()
@@ -66,15 +66,15 @@ def main():
 	if checker_words == "y":
 		counted_words(book)
 	elif checker_words == "n" and checker_letters != "zero":
-		print("No words information to print selected.\n")
+		print("Words count display skipped.\n")
 	
 	if checker_letters != "zero":
 		organization(book, checker_letters)
 	elif checker_letters == "zero" and checker_words == "y":
-		print("No letters information to print selected.")
+		print("Letters count display skipped.")
 
 	if checker_words == "n" and checker_letters == "zero":
-		print("No book informations to print selected.")
+		print("No information to print.")
 
 	print("\n--- End report ---")
 
@@ -89,10 +89,7 @@ def letters_counted(text):
 	letters_counter = {}
 	for char in lowered_string:
 		if char.isalpha():
-			if char in letters_counter:
-				letters_counter[char] += 1
-			else:
-				letters_counter[char] = 1
+			letters_counter[char] = letters_counter.get(char, 0) + 1
 	return letters_counter
 
 
